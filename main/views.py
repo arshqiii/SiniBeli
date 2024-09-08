@@ -12,13 +12,13 @@ def show_main(request):
 
         'product_name1' : 'Iphone 15',
         'price1': 15000000,
-        'description1': '',
+        'description1': 'HP baru & Mahal',
         'product_name2' : 'Laptop Asus ROG Zephyrus',
         'price2': 18500000,
-        'description3': '',
+        'description3': 'Laptop bisa buat gaming + kuliah',
         'product_name3' : 'Sony Noise-Cancelling Headphones',
         'price3': 3000000,
-        'description3': '',
+        'description3': 'Headphone noise cancelling biar hidup tenang',
 
     }
 
