@@ -14,7 +14,7 @@ def show_main(request):
         'description1': 'HP baru & Mahal',
         'product_name2' : 'Laptop Asus ROG Zephyrus',
         'price2': 18500000,
-        'description3': 'Laptop bisa buat gaming + kuliah',
+        'description2': 'Laptop bisa buat gaming + kuliah',
         'product_name3' : 'Sony Headphones',
         'price3': 3000000,
         'description3': 'Headphone noise cancelling biar hidup tenang',
