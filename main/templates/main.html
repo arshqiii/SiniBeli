@@ -8,45 +8,44 @@
 </head>
 <body>
     <div class="header"> 
-        <h5> Name: </h5>
-        <p>Muhammad Radhiya Arshq</p>
-        <!-- <p>{{nama}}</p> -->
-        <h5> NPM: </h5>
-        <p>2306275885</p>
-        <!-- <p>{{npm}}</p> -->
-        <h5>Class: </h5>
-        <p>PBP D</p>
-        <!-- <p>{{kelas}}</p> -->
+        <div id="header-info">
+            <h5> Name: </h5>
+            <h5>{{nama}}</h5>
+        </div>
+        <div id="header-info">
+            <h5> NPM: </h5>
+            <h5>{{npm}}</h5>
+        </div>
+        <div id="header-info">
+            <h5>Class: </h5>
+            <h5>{{kelas}}</h5>
+        </div>
     </div>
     <div class="intro">
         <div class="app-info">
-            <h1>SiniBeli</h1>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                Porro obcaecati dolor, enim debitis harum dolorem modi laboriosam consequatur assumenda hic quibusdam, 
-                adipisci corporis reiciendis deserunt perspiciatis? Officia dignissimos iure voluptate.</p>
-            <!-- <h1>{{app_name}}</h1>
-            <p>{{app_desc}}</p> -->
+            <h1>{{app_intro}}</h1>
         </div>
     </div>
     <div class="product-container">
+        <h2>Product</h2>
         <div class="container-box">
             <div class="box">
-                <img class="product-pic" src=""> 
-                <p> Iphone 15 </p>
-                <p> Price : Rp15000000 </p>
-                <p> Description : HP baru & Mahal</p>
+                <img class="product-pic" src="img/iphone2.jpeg"> 
+                <p style="text-align: center;"> {{product_name1}} </p>
+                <p> Price : Rp{{price1}}.00 </p>
+                <p> Description : {{description1}}</p>
             </div>
             <div class="box">
-                <img class="product-pic" src=""> 
-                <p> Laptop Asus ROG Zephyrus </p>
-                <p> Price : Rp18500000 </p>
-                <p> Description : Laptop bisa buat gaming + kuliah</p>
+                <img class="product-pic" src="img/asus2.png"> 
+                <p style="text-align: center;"> {{product_name2}} </p>
+                <p> Price : Rp{{price2}}.00 </p>
+                <p> Description : {{description2}}</p>
             </div>
             <div class="box">
-                <img class="product-pic" src=""> 
-                <p> Sony Noise-Cancelling Headphones </p>
-                <p> Price : Rp3000000 </p>
-                <p> Description : Headphone noise cancelling biar hidup tenang</p>
+                <img class="product-pic" src="img/headphone.webp"> 
+                <p style="text-align: center;"> {{product_name3}} </p>
+                <p> Price : Rp{{price3}}.00 </p>
+                <p> Description : {{description3}}</p>
             </div>
         </div>
     </div>

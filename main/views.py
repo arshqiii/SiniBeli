@@ -7,8 +7,7 @@ def show_main(request):
         'npm' : '2306275885',
         'kelas' : 'PBP D',
 
-        'app_name' : 'SiniBeli',
-        'app_desc' : 'Welcome to SiniBeli',
+        'app_intro' : 'Welcome to SiniBeli',
 
         'product_name1' : 'Iphone 15',
         'price1': 15000000,
@@ -16,7 +15,7 @@ def show_main(request):
         'product_name2' : 'Laptop Asus ROG Zephyrus',
         'price2': 18500000,
         'description3': 'Laptop bisa buat gaming + kuliah',
-        'product_name3' : 'Sony Noise-Cancelling Headphones',
+        'product_name3' : 'Sony Headphones',
         'price3': 3000000,
         'description3': 'Headphone noise cancelling biar hidup tenang',
 
