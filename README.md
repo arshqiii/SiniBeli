@@ -69,6 +69,8 @@
  	Framework Django dapat dijadikan sebagai permulaan pembelajaran pengembangan perangkat lunak karena 
 
 6. Mengapa model pada Django disebut sebagai ORM?
+	
+ 	Model pada Django disebut sebagai ORM atau Object-Relational Mapper karena fungsinya dalam menghubungi objek atau model yang dibuat dengan database. Ini memungkinkan developer untuk berinteraksi dengan database menggunakan model objek python tanpa perlu menulis QuerySQL sehingga mempercepat proses pengembangan perangkat lunak. 
 
 ## Checklist Tugas
 
