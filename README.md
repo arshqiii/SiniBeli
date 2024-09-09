@@ -65,7 +65,8 @@
 	Git memiliki fungsi sebagai sistem kontrol versi untuk menyimpan, mengelola, dan berbagi source code secara efisien dan kolaboratif. Git memungkinkan pengembangan dengan kemampuannya untuk melacak perubahan kode sepanjang waktu. Git juga mendukung kolaborasi antar developer dengan memungkinkan beberapa orang bekerja pada proyek yang sama. Hal-hal tersebut membuat git memungkinkan pengelolaan perangkat lunak yang lebih terstruktur dan kolaboratif
  
 5. Menurut Anda, dari semua framework yang ada, mengapa framework Django dijadikan permulaan pembelajaran pengembangan perangkat lunak?
-	Framework Django dapat dijadikan sebagai permulaan pembelajaran pengembangan perangkat lunak karena 
+	
+ 	Framework Django dapat dijadikan sebagai permulaan pembelajaran pengembangan perangkat lunak karena 
 
 6. Mengapa model pada Django disebut sebagai ORM?
 
