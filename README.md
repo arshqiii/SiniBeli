@@ -66,7 +66,7 @@
 
 5. Mengapa model pada Django disebut sebagai ORM?
 
-## Checlist Tugas
+## Checklist Tugas
 
 - [x] Membuat sebuah proyek Django baru.
 - [x] Membuat aplikasi dengan nama main pada proyek tersebut.
