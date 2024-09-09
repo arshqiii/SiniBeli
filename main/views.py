@@ -11,7 +11,7 @@ def show_main(request):
 
         'product_name1' : 'Iphone 15',
         'price1': 15000000,
-        'description1': 'HP baru & Mahal',
+        'description1': 'HP baru dengan kamera canggih',
         'product_name2' : 'Laptop Asus ROG Zephyrus',
         'price2': 18500000,
         'description2': 'Laptop bisa buat gaming + kuliah',
