@@ -1,6 +1,11 @@
+# SiniBeli
+
 <h5> Nama : Muhammad Radhiya Arshq </h5>
 <h5> NPM : 2306275885 </h5>
 <h5> Kelas : PBP D </h5>
+
+## Link Deployment
+Akses SiniBeli di link berikut : http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id/
 
 ## Pertanyaan & Jawaban
 
@@ -59,8 +64,15 @@
       ```
     - Terakhir, setelah aplikasi selesai, saya lakukan deployment ke PWS (`https://pbp.cs.ui.ac.id.`) terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses melalui Internet.
 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
+ 	![image](https://github.com/user-attachments/assets/60a620c8-80b7-4d72-91ef-6d65b73a0fc7)
+	
+	Penjelasan :
+	- Pertama User mengirim request kepada Django
+	- Request lalu di forward oleh `urls.py` dan diarahkan ke `views.py`
+	- Lalu dari `views.py` diarahkan ke `models.py` untuk mengambil data model yang diambil dari database
+	- Data models lalu di proses di `views.py`, dan `main.html` yang ada di folder `templates` dirender dan dikembalikan ke User
 
-3. Jelaskan fungsi git dalam pengembangan perangkat lunak!
+4. Jelaskan fungsi git dalam pengembangan perangkat lunak!
 
 	Git memiliki fungsi sebagai sistem kontrol versi untuk menyimpan, mengelola, dan berbagi source code secara efisien dan kolaboratif. Git memungkinkan pengembangan dengan kemampuannya untuk melacak perubahan kode sepanjang waktu. Git juga mendukung kolaborasi antar developer dengan memungkinkan beberapa orang bekerja pada proyek yang sama. Hal-hal tersebut membuat git memungkinkan pengelolaan perangkat lunak yang lebih terstruktur dan kolaboratif
  
