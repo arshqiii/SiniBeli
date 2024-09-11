@@ -69,8 +69,9 @@ Akses SiniBeli di link berikut : http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.i
 	Penjelasan :
 	- Pertama User mengirim request kepada Django
 	- Request lalu di forward oleh `urls.py` dan diarahkan ke `views.py`
-	- Lalu dari `views.py` diarahkan ke `models.py` untuk mengambil data model yang diambil dari database
-	- Data models lalu di proses di `views.py`, dan `main.html` yang ada di folder `templates` dirender dan dikembalikan ke User
+	- Lalu dari `views.py` diarahkan ke `models.py` untuk mengambil data model yang ada di database
+	- Data models di proses di `views.py`
+	- `main.html` yang ada berada dalam folder `templates` dirender dan dikembalikan ke User
 
 4. Jelaskan fungsi git dalam pengembangan perangkat lunak!
 
