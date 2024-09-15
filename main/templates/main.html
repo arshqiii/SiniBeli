@@ -25,17 +25,17 @@
     <h3>No Product Available</h3>
     {% else %}
     <div class="container-box">
-    {% for product in product_entries %}
+        {% for product in product_entries %}
         <div class="box">
             <p style="text-align: center;"> {{product.name}} </p>
             <p> Price : Rp{{product.price}}.00 </p>
             <p> Description : {{product.description}}</p>
         </div>
-    {% endfor %}
+        {% endfor %}
     </div>
     {% endif %}
     <div>
-        <a href="{% url 'main:create_product_entry' %}">
+        <a href="{% url 'main:create_product' %}">
             <div class="add-product">
                 <button>Add New Product</button>
             </div>
