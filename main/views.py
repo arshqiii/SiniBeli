@@ -39,4 +39,4 @@ def create_product_entry(request):
         return redirect('main:show_main')
 
     context = {'form': form}
-    return render(request, "create_product.html", context)
+    return render(request, "create_product_entry.html", context)
