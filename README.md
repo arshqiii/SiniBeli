@@ -1,4 +1,4 @@
-# SiniBeli
+![WhatsApp Image 2024-09-16 at 06 42 14_07164f6d](https://github.com/user-attachments/assets/3f539735-46c8-485e-a6cb-59ff22485b7f)# SiniBeli
 
 <h5> Nama : Muhammad Radhiya Arshq </h5>
 <h5> NPM : 2306275885 </h5>
@@ -20,6 +20,14 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 5. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
 
 * Screenshot dari hasil akses URL (format XML, JSON, XML by ID, dan JSON by ID) pada Postman
+  	- XML
+  	![WhatsApp Image 2024-09-16 at 06 42 57_dde6382a](https://github.com/user-attachments/assets/03dc7479-eefa-464c-8cc9-c38ddec6d65f)
+  	- JSON
+  	![WhatsApp Image 2024-09-16 at 06 42 13_d7249822](https://github.com/user-attachments/assets/15faf452-92a9-4dea-ba0d-0449757932ab)
+	- XML by ID
+	![WhatsApp Image 2024-09-16 at 06 42 13_accfdde7](https://github.com/user-attachments/assets/40873068-20c5-463f-b30d-89347dff7cd6)
+	- JSON by ID
+	![WhatsApp Image 2024-09-16 at 06 42 14_07164f6d](https://github.com/user-attachments/assets/510c73a1-f796-4207-9e11-3ee34c31dc49)
 
 ## Checklist Tugas 3
 - [x] Membuat input form untuk menambahkan objek model pada app sebelumnya.
@@ -31,7 +39,7 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
    - Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
    - Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
    - Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
-- [ ] Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
+- [x] Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
 - [ ] Melakukan add-commit-push ke GitHub.
 ---
 ## Tugas 2
