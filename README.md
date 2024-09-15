@@ -1,4 +1,4 @@
-![WhatsApp Image 2024-09-16 at 06 42 14_07164f6d](https://github.com/user-attachments/assets/3f539735-46c8-485e-a6cb-59ff22485b7f)# SiniBeli
+# SiniBeli
 
 <h5> Nama : Muhammad Radhiya Arshq </h5>
 <h5> NPM : 2306275885 </h5>
