@@ -4,7 +4,7 @@ from main.models import Product
 
 # Create your views here.
 def show_main(request):
-    product_entry = Product.objects.all()
+    product_entries = Product.objects.all()
 
     context = {
         'nama' : 'Muhammad Radhiya Arshq',
@@ -12,7 +12,7 @@ def show_main(request):
         'kelas' : 'PBP D',
 
         'app_intro' : 'Welcome to SiniBeli',
-        'product' : product_entry,
+        'product' : product_entries,
     }
 
     example_product = {
@@ -38,5 +38,11 @@ def create_product_entry(request):
         form.save()
         return redirect('main:show_main')
 
-    context = {'form': form}
+    context = {
+        'form': form,
+        
+        'nama' : 'Muhammad Radhiya Arshq',
+        'npm' : '2306275885',
+        'kelas' : 'PBP D',
+        }
     return render(request, "create_product_entry.html", context)
