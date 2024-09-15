@@ -38,11 +38,5 @@ def create_product_entry(request):
         form.save()
         return redirect('main:show_main')
 
-    context = {
-        'form': form,
-        
-        'nama' : 'Muhammad Radhiya Arshq',
-        'npm' : '2306275885',
-        'kelas' : 'PBP D',
-        }
+    context = {'form': form}
     return render(request, "create_product_entry.html", context)

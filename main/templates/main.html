@@ -35,7 +35,6 @@
         <div class="container-box">
             {% for product in product_entries %}
             <div class="box">
-                <!-- <img class="product-pic" src="https://i.imgur.com/1WKsoAZ.jpeg">  -->
                 <p style="text-align: center;"> {{product.name}} </p>
                 <p> Price : Rp{{product.price}}.00 </p>
                 <p> Description : {{product.description}}</p>
@@ -45,7 +44,9 @@
         {% endif %}
         <div>
             <a href="{% url 'main:create_product_entry' %}">
-                <button>Add New Product</button>
+                <div class="add-product">
+                    <button>Add New Product</button>
+                </div>
             </a>
         </div>
     </div>
@@ -138,6 +139,24 @@
             height: 180px;
             width: 196px;
             border-radius: 20px;
+        }
+
+        .add-product button{
+            font-size: large;
+            border-radius: 10px;
+            padding: 10px ;
+            box-shadow: 0 5px #666;
+            transition-duration: 0.4s;
+        }
+
+        .add-product button:hover{
+            color: aliceblue;
+            background-color: rgb(145, 181, 83);
+        }
+
+        .add-product button:active{
+            box-shadow: 0 5px #666;
+            transform: translateY(5px);
         }
     </style>
     {% endblock content %}
