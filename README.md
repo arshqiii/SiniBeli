@@ -5,7 +5,7 @@
 <h5> Kelas : PBP D </h5>
 
 ## Link Deployment
-Akses SiniBeli di link berikut : http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id/
+Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id/](http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id/)
 
 ## Pertanyaan & Jawaban
 
