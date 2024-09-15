@@ -22,9 +22,9 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 * Screenshot dari hasil akses URL (format XML, JSON, XML by ID, dan JSON by ID) pada Postman
 
 ## Checklist Tugas 3
-- [ ] Membuat input form untuk menambahkan objek model pada app sebelumnya.
-- [ ] Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.
-- [ ] Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
+- [x] Membuat input form untuk menambahkan objek model pada app sebelumnya.
+- [x] Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.
+- [x] Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
 - [ ] Menjawab beberapa pertanyaan berikut pada README.md pada root folder.
    - Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
    - Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
