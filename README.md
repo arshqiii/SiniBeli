@@ -5,9 +5,9 @@
 <h5> Kelas : PBP D </h5>
 
 ## Link Deployment
-Akses SiniBeli di link berikut : http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id/
+Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id/](http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id/)
 
-## Pertanyaan & Jawaban
+## Tugas 2
 
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
     - Pertama saya membuat direktori lokal di perangkat saya, lalu saya membuat proyek Django didalamnya dengan perintah `django-admin startproject {nama proyek} .`
@@ -85,7 +85,7 @@ Akses SiniBeli di link berikut : http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.i
 	
  	Model pada Django disebut sebagai ORM atau Object-Relational Mapper karena fungsinya dalam menghubungi objek atau model yang dibuat dengan database. Ini memungkinkan developer untuk berinteraksi dengan database menggunakan model objek python tanpa perlu menulis QuerySQL sehingga mempercepat proses pengembangan perangkat lunak. 
 
-## Checklist Tugas
+## Checklist Tugas 2
 
 - [x] Membuat sebuah proyek Django baru.
 - [x] Membuat aplikasi dengan nama main pada proyek tersebut.
@@ -103,3 +103,30 @@ Akses SiniBeli di link berikut : http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.i
     - Jelaskan fungsi git dalam pengembangan perangkat lunak!
     - Menurut Anda, dari semua framework yang ada, mengapa framework Django dijadikan permulaan pembelajaran pengembangan perangkat lunak?
     - Mengapa model pada Django disebut sebagai ORM?
+
+## Tugas 3
+
+1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+2. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+
+3. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+
+4. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+
+5. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+
+* Screenshot dari hasil akses URL (format XML, JSON, XML by ID, dan JSON by ID) pada Postman
+
+## Checklist Tugas 3
+- [ ] Membuat input form untuk menambahkan objek model pada app sebelumnya.
+- [ ] Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.
+- [ ] Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
+- [ ] Menjawab beberapa pertanyaan berikut pada README.md pada root folder.
+   - Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+   - Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+   - Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+   - Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+   - Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+- [ ] Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
+- [ ] Melakukan add-commit-push ke GitHub.
