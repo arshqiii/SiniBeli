@@ -23,13 +23,12 @@ def show_main(request):
         'product_name2' : 'Laptop Asus ROG Zephyrus',
         'price2': 18500000,
         'description2': 'Laptop ini bisa buat kuliah + gaming',
-        
+
         'product_name3' : 'Sony Headphones',
         'price3': 3000000,
         'description3': 'Headphone noise cancelling biar hidup tenang',
     }
     
-
     return render(request, "main.html", context)
 
 def create_product_entry(request):
