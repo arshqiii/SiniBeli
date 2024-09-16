@@ -33,7 +33,7 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 
 5. Mengapa kita membutuhkan `csrf_token` saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
 
-	Kita membutuhkan csrf_token saat membuat form di Django untuk menambah keamanan 
+	Kita membutuhkan csrf_token saat membuat form di Django untuk menambah keamanan data yang ada pada platform Django. csrf_token sendiri adalah token yang berfungsi sebagai security dan di-generate secara otomatis oleh Django untuk mencegah serangan berbahaya seperti serangan csrf (cross-site request forgery). Dalam jenis serangan ini, penyerang mengirimkan tautan berupa SMS, email, atau chat sehingga penyerang dapat menipu pengguna yang sudah terautentikasi di situs web untuk melakukan berbagai tindakan. Menggunakan csrf_token berupa best practice dalam pembuatan form di Django karena dapat membantu mencegah serangan csrf yang dapat membuat perubahan yang tidak diinginkan dalam form yang kita buat.
 
 * Screenshot dari hasil akses URL (format XML, JSON, XML by ID, dan JSON by ID) pada Postman
   	- XML
