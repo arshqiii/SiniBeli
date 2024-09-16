@@ -12,12 +12,28 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 
 2. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+	
+ 	Dalam pengimplementasian sebuah platform, sangat diperlukan data delivery, ini karena akan ada waktu dimana kita perlu mengirimkan data dari satu stack ke stack lainnya. Data delivery juga menghubungkan antara beberapa komponen dalam sebuah platform dan memastikan data dapat dikirim dengan cepat dan efisien sehingga dapat diakses oleh pengguna dengan cepat. Dengan data delivery yang baik, sebuah platform dapat berfungsi dengan baik untuk pengembangnya dan penggunanya.
 
 3. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
 
-4. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+	Menurut saya, JSON lebih baik dibanding XML, beberapa alasan mengapa JSON lebih populer dibanding XML adalah :
+	- Data ditampilkan dalam bentuk yang lebih readable dibanding xml yang bentuknya mirip dengan struktur file HTML,
+ 	- Parsing/pemrosesan data pada JSON lebih cepat dan ringan dibanding XML,
+ 	-  JSON cenderung lebih aman dibanding XML yang rentan terhadap modifikasi tidak sah sehingga dapat menciptakan risiko keamanan yang dikenal sebagai injeksi entitas eksternal XML (XXE).
+ 
+4. Jelaskan fungsi dari method `is_valid()` pada form Django dan mengapa kita membutuhkan method tersebut?
 
-5. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+	Kita membutuhkan method `is_valid()` pada form Django untuk mengetahui jika terjadi error pada form yang kita buat. ini dilakukan dengan memeriksa jika data atau file yang dikirim bukan variable None dan di cek jika data atau file tersebut memiliki error atau tidak. Jika hasilnya True untuk keduanya maka form valid dan akan di process dalam tahap selanjutnya. Sesuai dengan dokumentasinya dalam library Django, berikut potongan code method `is_valid()` :
+	```python
+ 	def is_valid(self):
+        """Return True if the form has no errors, or False otherwise."""
+        return self.is_bound and not self.errors
+ 	```
+
+5. Mengapa kita membutuhkan `csrf_token` saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+
+	Kita membutuhkan csrf_token saat membuat form di Django untuk menambah keamanan 
 
 * Screenshot dari hasil akses URL (format XML, JSON, XML by ID, dan JSON by ID) pada Postman
   	- XML
