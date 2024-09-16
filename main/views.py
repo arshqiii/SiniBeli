@@ -6,7 +6,7 @@ from main.models import Product
 
 # Create your views here.
 def show_main(request):
-    product_entries = Product.objects.all()
+    products = Product.objects.all()
 
     context = {
         'nama' : 'Muhammad Radhiya Arshq',
@@ -14,7 +14,7 @@ def show_main(request):
         'kelas' : 'PBP D',
 
         'app_intro' : 'Welcome to SiniBeli',
-        'product' : product_entries,
+        'products' : products,
     }
 
     example_product = {

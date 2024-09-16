@@ -21,11 +21,11 @@
 </div>
 <div class="product-container">
     <h2>Product</h2>
-    {% if not product_entries %}
+    {% if not products %}
     <h3>No Product Available</h3>
     {% else %}
     <div class="container-box">
-        {% for product in product_entries %}
+        {% for product in products %}
         <div class="box">
             <p style="text-align: center;"> {{product.name}} </p>
             <p> Price : Rp{{product.price}}.00 </p>
