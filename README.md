@@ -1,13 +1,13 @@
-# SiniBeli
+# SiniBeli 🛍️
 
-<h5> Nama : Muhammad Radhiya Arshq </h5>
-<h5> NPM : 2306275885 </h5>
-<h5> Kelas : PBP D </h5>
+<h5> 🧑‍💻 Nama : Muhammad Radhiya Arshq  </h5>
+<h5> 🆔 NPM : 2306275885 </h5>
+<h5> 🏛️ Kelas : PBP D </h5>
 
-## Link Deployment
+## 🔗 Link Deployment 
 Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id/](http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id/)
 
-## Tugas 3
+## 📃 Tugas 3
 
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 
@@ -45,7 +45,7 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 	- JSON by ID
 	![WhatsApp Image 2024-09-16 at 06 42 14_07164f6d](https://github.com/user-attachments/assets/510c73a1-f796-4207-9e11-3ee34c31dc49)
 
-## Checklist Tugas 3
+## ✅ Checklist Tugas 3
 - [x] Membuat input form untuk menambahkan objek model pada app sebelumnya.
 - [x] Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.
 - [x] Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
@@ -58,7 +58,7 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 - [x] Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
 - [x] Melakukan add-commit-push ke GitHub.
 ---
-## Tugas 2
+## 📃 Tugas 2
 
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
     - Pertama saya membuat direktori lokal di perangkat saya, lalu saya membuat proyek Django didalamnya dengan perintah `django-admin startproject {nama proyek} .`
@@ -136,7 +136,7 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 	
  	Model pada Django disebut sebagai ORM atau Object-Relational Mapper karena fungsinya dalam menghubungi objek atau model yang dibuat dengan database. Ini memungkinkan developer untuk berinteraksi dengan database menggunakan model objek python tanpa perlu menulis QuerySQL sehingga mempercepat proses pengembangan perangkat lunak. 
 
-## Checklist Tugas 2
+## ✅ Checklist Tugas 2
 
 - [x] Membuat sebuah proyek Django baru.
 - [x] Membuat aplikasi dengan nama main pada proyek tersebut.
