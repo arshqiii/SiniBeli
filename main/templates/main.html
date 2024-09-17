@@ -26,7 +26,7 @@
     {% else %}
     <div class="container-box">
         {% for product in products %}
-        <a href="json/{{product.id}}">
+        <a href="json/{{product.id}}" style="text-decoration: none;">
             <div class="box">
                 <img src="{{product.image.url}}" alt="Image of {{product.name}}">
                 <p style="text-align: center;"> {{product.name}} </p>
