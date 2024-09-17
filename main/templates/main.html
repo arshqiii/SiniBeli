@@ -28,7 +28,7 @@
         {% for product in products %}
         <a href="json/{{product.id}}">
             <div class="box">
-                <img src="{{product.image}}" alt="Image of {{product.name}}">
+                <img src="{{product.image.url}}" alt="Image of {{product.name}}">
                 <p style="text-align: center;"> {{product.name}} </p>
                 <p> Price : Rp{{product.price}}.00 </p>
                 <p> Description : {{product.description}}</p>
