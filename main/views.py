@@ -28,7 +28,7 @@ def show_main(request):
 
         'product_name3' : 'Sony Headphones',
         'price3': 3000000,
-        'description3': 'Headphone noise cancelling biar hidup tenang',
+        'description3': 'Headphone noise cancelling biar hidup  tenang',
     }
     
     return render(request, "main.html", context)
