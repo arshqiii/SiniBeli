@@ -18,23 +18,25 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 		class ProductEntryForm(ModelForm):
 		    class Meta:
 			model = Product
-			fields = ['name', 'price', 'description']
+			fields = ['name', 'price', 'description', 'image']
 		```
 		`model = Product` menunjukkan model yang akan digunakan untuk form adalah Product yang dibuat dalam berkas `models.py`. Sedangkan `fields = ['name', 'price', 'description']` menunjukkan field dari model yang digunakan untuk form.
 	
  		Setelah itu, saya membuat fungsi baru pada `views.py` dengan nama `create_product` yang akan menghasilkan form yang dapat menambahkan data product secara otomatis ketika data di-submit.
 		```python
 		def create_product(request):
-		    form = ProductEntryForm(request.POST or None)
+		    form = ProductEntryForm()
 		
-		    if form.is_valid() and request.method == "POST":
-		        form.save()
-		        return redirect('main:show_main')
+		    if request.method == "POST":
+		        form = ProductEntryForm(request.POST, request.FILES) 
+		        if form.is_valid():
+		            form.save()
+		            return redirect('main:show_main')
 		
 		    context = {'form': form}
 		    return render(request, "create_product.html", context)
 	 	```
-		Berdasarkan fungsi diatas, form akan dirender di file HTML `create_product.html`. Dalam fungsi tersebut, jika isi input form valid (menggunakan `form.is_valid()`) , maka akan disimpan data tersebut dan akan di redirect ke fungsi `show_main` pada views aplikasi `main` setelah disubmit, alias data product akan ditampilkan setelah disubmit (menggunakan `return redirect('main:show_main')`).
+		Berdasarkan fungsi diatas, form akan dirender ke file HTML `create_product.html`. Dalam fungsi tersebut, jika isi input form valid (menggunakan `form.is_valid()`) , maka akan disimpan data tersebut dan akan di redirect ke fungsi `show_main` pada views aplikasi `main` setelah disubmit, alias data product akan ditampilkan setelah disubmit (menggunakan `return redirect('main:show_main')`).
 	
 		Kemudian, saya ubah fungsi show_main pada views.py menjadi seperti berikut.
 		```python
