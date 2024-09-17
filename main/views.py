@@ -40,7 +40,7 @@ def create_product(request):
         form = ProductEntryForm(request.POST, request.FILES) 
         if form.is_valid():
             form.save()
-            return redirect('main:landing')
+            return redirect('main:show_main')
 
     context = {'form': form}
     return render(request, "create_product.html", context)
