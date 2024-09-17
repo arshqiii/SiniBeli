@@ -26,11 +26,13 @@
     {% else %}
     <div class="container-box">
         {% for product in products %}
-        <div class="box">
-            <p style="text-align: center;"> {{product.name}} </p>
-            <p> Price : Rp{{product.price}}.00 </p>
-            <p> Description : {{product.description}}</p>
-        </div>
+        <a href="json/{{product.id}}">
+            <div class="box">
+                <p style="text-align: center;"> {{product.name}} </p>
+                <p> Price : Rp{{product.price}}.00 </p>
+                <p> Description : {{product.description}}</p>
+            </div>
+        </a>
         {% endfor %}
     </div>
     {% endif %}
