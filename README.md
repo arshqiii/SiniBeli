@@ -10,7 +10,96 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 ## 📃 Tugas 3
 
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
-
+	- Untuk membuat input form untuk menambahkan objek model pada app sebelumnya yang saya lakukan adalah membuat berkas baru yaitu forms.py pada direktori main. Ini merupakan struktur form yang dapat menerima data Product baru. isi dari `forms.py` sebagai berikut
+		```python
+		from django.forms import ModelForm
+		from main.models import Product
+		
+		class ProductEntryForm(ModelForm):
+		    class Meta:
+			model = Product
+			fields = ['name', 'price', 'description']
+		```
+		`model = Product` menunjukkan model yang akan digunakan untuk form adalah Product yang dibuat dalam berkas `models.py`. Sedangkan `fields = ['name', 'price', 'description']` menunjukkan field dari model yang digunakan untuk form.
+	
+ 		Setelah itu, saya membuat fungsi baru pada `views.py` dengan nama `create_product` yang akan menghasilkan form yang dapat menambahkan data product secara otomatis ketika data di-submit.
+		```python
+		def create_product(request):
+		    form = ProductEntryForm(request.POST or None)
+		
+		    if form.is_valid() and request.method == "POST":
+		        form.save()
+		        return redirect('main:show_main')
+		
+		    context = {'form': form}
+		    return render(request, "create_product.html", context)
+	 	```
+		Berdasarkan fungsi diatas, form akan dirender di file HTML `create_product.html`. Dalam fungsi tersebut, jika isi input form valid (menggunakan `form.is_valid()`) , maka akan disimpan data tersebut dan akan di redirect ke fungsi `show_main` pada views aplikasi `main` setelah disubmit, alias data product akan ditampilkan setelah disubmit (menggunakan `return redirect('main:show_main')`).
+	
+		Kemudian, saya ubah fungsi show_main pada views.py menjadi seperti berikut.
+		```python
+	 	def show_main(request):
+		    products = Product.objects.all()
+		
+		    context = {
+		        'nama' : 'Muhammad Radhiya Arshq',
+		        'npm' : '2306275885',
+		        'kelas' : 'PBP D',
+		
+		        'app_intro' : 'Welcome to SiniBeli',
+		        'products' : products,
+		    }
+		    
+		    return render(request, "main.html", context)
+	 	```
+		`Product.objects.all()` digunakan untuk mengambil semua objek `Product` yang tersimpan dalam `database`
+	
+		Lalu saya mengubah isi urls.py dengan menambah import fungsi `create_product` dari `main` lalu menambahkan path URL ke dalam `urlpatterns` supaya dapat mengakses fungsi yang di import.
+		```python
+	 	urlpatterns = [
+		    path('', show_main, name='show_main'),
+		    path('create-product', create_product, name='create_product'),
+		]
+	 	```
+	
+	 	Terakhir saya membuat file HTML baru dengan nama `create_product.html` pada `main/templates` yang berisi struktur HTML untuk membuat form, dan melakukan modifikasi pada kedua file HTML pada `templates` untuk menyesuaikan pembuatan form dan penampilan product.
+		- Untuk dapat melihat data product yang telah dibuat dalam format XML, JSON, XML by ID, dan JSON by ID, saya membuat 4 fungsi baru pada file `views.py` seperti berikut
+	
+			* XML
+			```python
+	  		def show_xml(request):
+			    data = Product.objects.all()
+			    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+	  		```
+			* JSON
+			```python
+	  		def show_json(request):
+			    data = Product.objects.all()
+			    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+	  		```
+			* XML by ID
+			```python
+	  		def show_xml_by_id(request, id):
+			    data = Product.objects.filter(pk=id)
+			    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+	  		```
+			* JSON by ID
+			```python
+	  		def show_json_by_id(request, id):
+			    data = Product.objects.filter(pk=id)
+			    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+	  		```
+	  	- Untuk masing-masing fungsi yang dibuat untuk menampilkan data dalam bentuk XML ataupun JSON, dilakukan routing URL pada file `urls.py` dengan mengimport setiap fungsi tersebut dan menambahkan path URL ke dalam `urlpatterns` supaya dapat mengakses fungsi yang di import seperti berikut. Isi `urlpatterns` menjadi seperti berikut.
+		  	```python
+		   	urlpatterns = [
+			    path('', show_main, name='show_main'),
+			    path('create-product', create_product, name='create_product'),
+			    path('xml/', show_xml, name='show_xml'),
+			    path('json/', show_json, name='show_json'),
+			    path('xml/<str:id>/', show_xml_by_id, name='show_xml_by_id'),
+			    path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
+			]
+		   	```
 2. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 	
  	Dalam pengimplementasian sebuah platform, sangat diperlukan data delivery, ini karena akan ada waktu dimana kita perlu mengirimkan data dari satu stack ke stack lainnya. Data delivery juga menghubungkan antara beberapa komponen dalam sebuah platform dan memastikan data dapat dikirim dengan cepat dan efisien sehingga dapat diakses oleh pengguna dengan cepat. Dengan data delivery yang baik, sebuah platform dapat berfungsi dengan baik untuk pengembangnya dan penggunanya.
@@ -49,7 +138,7 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 - [x] Membuat input form untuk menambahkan objek model pada app sebelumnya.
 - [x] Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.
 - [x] Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
-- [ ] Menjawab beberapa pertanyaan berikut pada README.md pada root folder.
+- [x] Menjawab beberapa pertanyaan berikut pada README.md pada root folder.
    - Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
    - Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
    - Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
