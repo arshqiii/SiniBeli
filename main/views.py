@@ -15,11 +15,11 @@ from django.urls import reverse
 
 # Create your views here.
 @login_required(login_url='/login') #ditambahkan supaya halaman main hanya dapat diakses oleh pengguna yang sudah login
-def show_main(request):
-    products = Product.objects.all()
+def show_main(request): #fungsi yang merender isi dari halaman utama aplikasi
+    products = Product.objects.filter(user=request.user) #menfilter product berdasarkan user yang sedang login
 
     context = {
-        'nama' : 'Muhammad Radhiya Arshq',
+        'nama' : request.user.username, #menampilkan username pengguna yang login pada halaman main.
         'npm' : '2306275885',
         'kelas' : 'PBP D',
 
@@ -32,12 +32,13 @@ def show_main(request):
 
 def create_product(request):
     form = ProductEntryForm()
-
-    if request.method == "POST":
+        
+    if form.is_valid() and request.method == "POST":
         form = ProductEntryForm(request.POST, request.FILES) 
-        if form.is_valid():
-            form.save()
-            return redirect('main:show_main')
+        product = form.save(commit=False) #untuk mencegah Django agar tidak langsung menyimpan objek yang telah dibuat dari form langsung ke database. 
+        product.user = request.user
+        product.save()
+        return redirect('main:show_main') #mengarahkan pengguna ke halaman utama dalam aplikasi Django.
 
     context = {'form': form}
     return render(request, "create_product.html", context)

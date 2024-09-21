@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,7 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*xg2$p)t8y511qqiyh=0s8r)i6&phfx6y@qjy(nnk2i$^cn4u6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+PRODUCTION = os.getenv("PRODUCTION", False)
+DEBUG = not PRODUCTION
+
+#*membuat variabel DEBUG di project kalian bernilai True ketika mengerjakan di lokal dan otomatis bernilai False ketika di push ke PWS.
+#*Variabel DEBUG yang bernilai False akan membantu PWS agar tidak rungkad lagi karena Django tidak perlu mengecek semua file yang sedang diproses.
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id"]
 
@@ -52,7 +56,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'e_commerce_pbp.urls'
 
-import os
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
 TEMPLATES = [
