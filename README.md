@@ -7,6 +7,31 @@
 ## 🔗 Link Deployment 
 Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id/](http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id/)
 
+## 📃 Tugas 4
+
+1. Apa perbedaan antara HttpResponseRedirect() dan redirect()
+
+2. Jelaskan cara kerja penghubungan model MoodEntry dengan User!
+
+3. Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+
+4. Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+## ✅ Checklist Tugas 4
+  - [ ] Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
+  - [ ] Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
+  - [ ] Menghubungkan model Product dengan User.
+  - [ ] Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
+  - [ ] Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).
+	- Apa perbedaan antara HttpResponseRedirect() dan redirect()
+ 	- Jelaskan cara kerja penghubungan model MoodEntry dengan User!
+  	- Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+  	- Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+   	- Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+  - [ ] Melakukan add-commit-push ke GitHub.
+
 ## 📃 Tugas 3
 
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
@@ -18,23 +43,25 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 		class ProductEntryForm(ModelForm):
 		    class Meta:
 			model = Product
-			fields = ['name', 'price', 'description']
+			fields = ['name', 'price', 'description', 'image']
 		```
 		`model = Product` menunjukkan model yang akan digunakan untuk form adalah Product yang dibuat dalam berkas `models.py`. Sedangkan `fields = ['name', 'price', 'description']` menunjukkan field dari model yang digunakan untuk form.
 	
  		Setelah itu, saya membuat fungsi baru pada `views.py` dengan nama `create_product` yang akan menghasilkan form yang dapat menambahkan data product secara otomatis ketika data di-submit.
 		```python
 		def create_product(request):
-		    form = ProductEntryForm(request.POST or None)
+		    form = ProductEntryForm()
 		
-		    if form.is_valid() and request.method == "POST":
-		        form.save()
-		        return redirect('main:show_main')
+		    if request.method == "POST":
+		        form = ProductEntryForm(request.POST, request.FILES) 
+		        if form.is_valid():
+		            form.save()
+		            return redirect('main:show_main')
 		
 		    context = {'form': form}
 		    return render(request, "create_product.html", context)
 	 	```
-		Berdasarkan fungsi diatas, form akan dirender di file HTML `create_product.html`. Dalam fungsi tersebut, jika isi input form valid (menggunakan `form.is_valid()`) , maka akan disimpan data tersebut dan akan di redirect ke fungsi `show_main` pada views aplikasi `main` setelah disubmit, alias data product akan ditampilkan setelah disubmit (menggunakan `return redirect('main:show_main')`).
+		Berdasarkan fungsi diatas, form akan dirender ke file HTML `create_product.html`. Dalam fungsi tersebut, jika isi input form valid (menggunakan `form.is_valid()`) , maka akan disimpan data tersebut dan akan di redirect ke fungsi `show_main` pada views aplikasi `main` setelah disubmit, alias data product akan ditampilkan setelah disubmit (menggunakan `return redirect('main:show_main')`).
 	
 		Kemudian, saya ubah fungsi show_main pada views.py menjadi seperti berikut.
 		```python
