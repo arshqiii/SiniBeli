@@ -3,8 +3,11 @@ from django.http import HttpResponse
 from django.core import serializers
 from main.forms import ProductEntryForm
 from main.models import Product
-from django.contrib.auth.forms import UserCreationForm #ini memudahkan pembuatan formulir pendaftaran pengguna dalam aplikasi web.
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm  #ini memudahkan pembuatan formulir pendaftaran dan autentikasi pengguna dalam aplikasi web.
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+
+#authenticate dan login yang di-import di atas adalah fungsi bawaan Django yang dapat digunakan untuk melakukan autentikasi dan login
 
 # Create your views here.
 def show_main(request):
@@ -17,20 +20,6 @@ def show_main(request):
 
         'app_intro' : 'Welcome to SiniBeli',
         'products' : products,
-    }
-
-    example_product = {
-        'product_name1' : 'Iphone 15',
-        'price1': 15000000,
-        'description1': 'HP baru dengan kamera canggih',
-
-        'product_name2' : 'Laptop Asus ROG Zephyrus',
-        'price2': 18500000,
-        'description2': 'Laptop ini bisa buat kuliah + gaming',
-
-        'product_name3' : 'Sony Headphones',
-        'price3': 3000000,
-        'description3': 'Headphone noise cancelling biar hidup  tenang',
     }
     
     return render(request, "main.html", context)
@@ -59,6 +48,24 @@ def register(request): #berfungsi untuk menghasilkan formulir registrasi secara 
             return redirect('main:login') #redirect setelah data form berhasil disimpan/masuk ke halaman login setelah register akun
     context = {'form':form}
     return render(request, 'register.html', context) #form akan dirender dalam file register.html yang berisi context
+
+def login_user(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+
+        if form.is_valid():
+                user = form.get_user()
+                login(request, user) #berfungsi untuk melakukan login terlebih dahulu. Jika pengguna valid, fungsi ini akan membuat session untuk pengguna yang berhasil login.
+                return redirect('main:show_main') #mengarahkan pengguna ke halaman utama dalam aplikasi Django
+
+    else:
+        form = AuthenticationForm(request)
+    context = {'form': form}
+    return render(request, 'login.html', context)
+
+def logout_user(request):
+    logout(request) #digunakan untuk menghapus sesi pengguna yang saat ini masuk.
+    return redirect('main:login') #mengarahkan pengguna ke halaman login dalam aplikasi Django.
 
 def show_xml(request):
     data = Product.objects.all()
