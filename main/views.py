@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.core import serializers
@@ -6,10 +7,14 @@ from main.models import Product
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm  #ini memudahkan pembuatan formulir pendaftaran dan autentikasi pengguna dalam aplikasi web.
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required #mengimpor sebuah decorator yang bisa mengharuskan pengguna masuk (login) terlebih dahulu sebelum dapat mengakses suatu halaman web.
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 #authenticate dan login yang di-import di atas adalah fungsi bawaan Django yang dapat digunakan untuk melakukan autentikasi dan login
 
 # Create your views here.
+@login_required(login_url='/login') #ditambahkan supaya halaman main hanya dapat diakses oleh pengguna yang sudah login
 def show_main(request):
     products = Product.objects.all()
 
@@ -20,6 +25,7 @@ def show_main(request):
 
         'app_intro' : 'Welcome to SiniBeli',
         'products' : products,
+        'last_login': request.COOKIES['last_login'], #menambahkan informasi cookie last_login pada response yang akan ditampilkan di halaman web.
     }
     
     return render(request, "main.html", context)
@@ -56,7 +62,9 @@ def login_user(request):
         if form.is_valid():
                 user = form.get_user()
                 login(request, user) #berfungsi untuk melakukan login terlebih dahulu. Jika pengguna valid, fungsi ini akan membuat session untuk pengguna yang berhasil login.
-                return redirect('main:show_main') #mengarahkan pengguna ke halaman utama dalam aplikasi Django
+                response = HttpResponseRedirect(reverse("main:show_main")) #untuk membuat response yang mengarahkan pengguna ke halaman utama dalam aplikasi Django
+                response.set_cookie('last_login', str(datetime.datetime.now())) #membuat cookie last_login dan menambahkannya ke dalam response
+                return response
 
     else:
         form = AuthenticationForm(request)
@@ -65,7 +73,9 @@ def login_user(request):
 
 def logout_user(request):
     logout(request) #digunakan untuk menghapus sesi pengguna yang saat ini masuk.
-    return redirect('main:login') #mengarahkan pengguna ke halaman login dalam aplikasi Django.
+    response = HttpResponseRedirect(reverse('main:login')) #membuat response yang mengarahkan pengguna ke halaman login dalam aplikasi Django.
+    response.delete_cookie('last_login') #menghapus cookie last_login saat pengguna melakukan logout
+    return response 
 
 def show_xml(request):
     data = Product.objects.all()
