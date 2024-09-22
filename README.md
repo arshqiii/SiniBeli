@@ -9,24 +9,109 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 
 ## 📃 Tugas 4
 
-1. Apa perbedaan antara HttpResponseRedirect() dan redirect()
+### 1. Apa perbedaan antara `HttpResponseRedirect()` dan `redirect()`
+Kedua hal tersebut memiliki fungsi yang sama yaitu untuk me-redirect user ke halaman atau URL tertentu, namun terdapat perbedaan antara `HttpResponseRedirect()` dan `redirect()` yaitu dalam menggunakan `HttpResponseRedirect()` isi dari argumen yang dapat diterima fungsi hanya bisa berupa url yang dapat digunakan, namun dalam penggunaan `redirect()` isi argumen yang dapat diterima bisa berupa `model`, `view`, atau url. Dengan itu banyak orang lebih sering menggunakan `redirect()` dibanding `HttpResponseRedirect()` karena sifatnya yang lebih fleksibel
 
-2. Jelaskan cara kerja penghubungan model MoodEntry dengan User!
+### 2. Jelaskan cara kerja penghubungan model `Product` dengan `User`!
+Dalam pembuatan proyek ini, cara menghubungkan model Product dengan user adalah dengan menambahkan field user pada model Product, field ini menggunakan sesuatu yang bernama `ForeignKey`. Ini berfungsi untuk menghubungkan data di model dengan user yang telah login sehingga setiap kali user membuat product, product tersebut akan dikaitkan dengan user tersebut. Implementasi sebagai berikut :
+ ```python
+from django.db import models
+from django.contrib.auth.models import User
 
-3. Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+class Product(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE) 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=100)
+    price = models.IntegerField()
+    description = models.TextField()
+    image = models.ImageField(default='')
+ ```
+### 3. Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+Authentication dan authorization keduanya digunakan dalam keamanan data. Authentication merupakan method yang meverifikasi identitas user dengan cek username, password dan informasi lainnya. Authorization merupakan method yang menentukan apakah user yang telah masuk diizinkan melakukan tindakan tertentu dengan menspesifikasi hal-hal yang dapat diakses dan dapat dilakukan. Dalam Django kedua hal tersebut diimplementasikan dengan menggunakan middleware `SessionMiddleware` dan `AuthenticationMiddleware` yang melacak pengguna yang login. Ketika user login dilakukan authentication untuk memastikan user, ini dilakukan dengan mengisi username dan password, dan jika belum ada maka bisa register dulu. Setelah melakukan itu Django memberikan authorization dengan memeriksa apa yang diizinkan atau yang tidak diizinkan bagi user yang telah login.
 
-4. Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+### 4. Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+Django mengingat pengguna yang telah login dengan mengimplementasikan session dan cookies. Jadi tiap kali user login, Django akan membuat sebuah session untuk user tersebut yang akan menyimpan informasi terkait status login user tersebut dan tiap session memiliki ID unik yang disimpan dalam cookies browser. Cookies ini nanti disimpan ke server dengan setiap request berikutnya. Beberapa kegunaan lain dari cookies adalah dapat digunakan untuk menyimpan preferensi user seperti bahasa, tema, dan pengaturan lainnya sehingga ketika user kembali maka aplikasi atau website dapat menampilkan informasi yang relevan dengan preferensi user. Pada umumnya cookies aman untuk digunakan dalam aktivitas online dan berkemungkinan kecil untuk menghasilkan malware pada perangkat yang digunakan.
 
-5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
-
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+- Untuk pengimplementasian fungsi registerasi, login dan logout user terdapat beberapa hal yang saya tambahkan pada proyek Django yaitu dengan membuat beberapa fungsi dalam `views.py` seperti
+	 ```python
+	 def register(request): 
+	    form = UserCreationForm() 
+	
+	    if request.method == "POST":
+	        form = UserCreationForm(request.POST) 
+	        if form.is_valid(): 
+	            form.save() 
+	            messages.success(request, 'Your account has been successfully created!')
+	            return redirect('main:login')
+	    context = {'form':form}
+	    return render(request, 'register.html', context) 
+	 ```
+  	Fungsi `register()` dibuat untuk menghasilkan formulir registrasi secara otomatis dan menghasilkan akun pengguna ketika data di-submit dari form.
+  
+  	```python
+	def login_user(request):
+	    if request.method == 'POST':
+	        form = AuthenticationForm(data=request.POST)
+	
+	        if form.is_valid():
+	                user = form.get_user()
+	                login(request, user) 
+	                response = HttpResponseRedirect(reverse("main:show_main")) 
+	                response.set_cookie('last_login', str(datetime.datetime.now())) 
+	                return response
+	    else:
+	        form = AuthenticationForm(request)
+	    context = {'form': form}
+	    return render(request, 'login.html', context)
+	```
+   	Fungsi `login_user()` dibuat untuk untuk mengautentikasi pengguna yang ingin login.
+  
+   	```python
+	def logout_user(request):
+	    logout(request) 
+	    response = HttpResponseRedirect(reverse('main:login')) 
+	    response.delete_cookie('last_login')
+	    return response 
+	```
+	Fungsi `logout_user()` dibuat untuk melakukan mekanisme logout.
+- Setelah melakukan hal tersebut saya berhasil membuat dua akun pengguna yang berbeda dan masing-masing pengguna memiliki product-product yang berbeda berdasarkan apa yang dilakukan pada kedua akun user tersebut
+- Untuk menghubungkan model Product dengan User yang saya lakukan adalah dengan menambahkan field baru pada model `Product` pada `models.py` berupa user yang menggunakan `ForeignKey`
+	```python
+ 	class Product(models.Model):
+	    user = models.ForeignKey(User, on_delete=models.CASCADE) 
+	    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+	    name = models.CharField(max_length=100)
+	    price = models.IntegerField()
+	    description = models.TextField()
+	    image = models.ImageField(default='')
+ 	```
+ - Untuk menampilkan user yang sedang login dan menerapkan cookies terdapat beberapa hal yang saya modifikasi pada `views.py` yaitu dengan mengisi data `nama` dengan `request.user.username` dan menambahkan data `last_login` untuk melihat kapan terakhir kali user melakukan login.
+	```python
+ 	def show_main(request): 
+	    products = Product.objects.filter(user=request.user) 
+	
+	    context = {
+	        'nama' : request.user.username, 
+	        'npm' : '2306275885',
+	        'kelas' : 'PBP D',
+	
+	        'app_intro' : 'Welcome to SiniBeli',
+	        'products' : products,
+	        'last_login': request.COOKIES['last_login'], 
+	    }
+	    
+	    return render(request, "main.html", context)
+ 	```
+    
 ## ✅ Checklist Tugas 4
   - [x] Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
   - [x] Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
   - [x] Menghubungkan model Product dengan User.
   - [x] Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
-  - [ ] Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).
+  - [x] Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).
 	- Apa perbedaan antara HttpResponseRedirect() dan redirect()
- 	- Jelaskan cara kerja penghubungan model MoodEntry dengan User!
+ 	- Jelaskan cara kerja penghubungan model Product dengan User!
   	- Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
   	- Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
    	- Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
