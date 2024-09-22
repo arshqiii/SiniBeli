@@ -6,27 +6,104 @@
 
 {% block content %}
 <div class="login">
-    <h1>Login</h1>
+    <h1>SiniBeli</h1>
+    <div class="login-container">
+        <h1>Login</h1>
+        
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="login-table">
+                <table>
+                {{ form.as_table }}
+                <tr>
+                    <td></td>
+                    <td><input class="login-btn" type="submit" value="Login" /></td>
+                </tr>
+                </table>
+            </div>
+        </form>
+    </div>
 
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-        {{ form.as_table }}
-        <tr>
-            <td></td>
-            <td><input class="btn login_btn" type="submit" value="Login" /></td>
-        </tr>
-        </table>
-    </form>
-
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %} Don't have an account yet?
-    <a href="{% url 'main:register' %}">Register Now</a>
+    <p> Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a></p>
 </div>
 
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %} 
+
+<style>
+    body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        background-color: honeydew;
+    }
+
+    .login{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 10px;
+        padding: 8px;
+    }
+
+    .login h1{
+        text-align: center;
+        font-size: 50px;
+    }
+
+    .login-table label{
+        font-size: larger;
+    }
+
+    .login-container{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 8px;
+    }
+
+    .login-table{
+        display: flex;
+        justify-content: center;
+        padding: 16px;
+        border: 2px solid black;
+        border-radius: 20px;
+        background-color: rgb(133, 146, 109);
+        box-shadow: 0 5px #666;
+    }
+
+    input[type=text], input[type=password] {
+        border: 2px solid black;
+        border-radius: 40px;
+        padding: 8px;
+        box-shadow: 0 3px #666;
+    }
+
+    .login-btn{
+        font-size: large;
+        border-radius: 10px;
+        padding: 5px ;
+        box-shadow: 0 5px #666;
+        transition-duration: 0.4s;
+    }
+
+    .login-btn:hover{
+        color: aliceblue;
+        background-color: rgb(145, 181, 83);
+    }
+
+    .login-btn:active{
+        box-shadow: 0 5px #666;
+        transform: translateY(5px);
+    }
+</style>
 {% endblock content %}
