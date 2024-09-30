@@ -32,6 +32,11 @@
                 <p style="text-align: center;"> {{product.name}} </p>
                 <p> Price : Rp{{product.price}}.00 </p>
                 <p> Description : {{product.description}}</p>
+                <a href="{% url 'main:edit_mood' mood_entry.pk %}">
+                    <button>
+                        Edit
+                    </button>
+                </a>
             </div>
         </a>
         {% endfor %}
