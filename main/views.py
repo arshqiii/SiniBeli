@@ -55,6 +55,16 @@ def edit_product(request, id):
     
     context = {'form': form}
     return render(request, "edit_product.html", context)
+#*============================================================Delete Product=============================================================================#
+def delete_product(request, id):
+    #mengambil product berdasarkan id
+    product = Product.objects.get(pk=id)
+
+    #hapus product
+    product.delete()
+
+    #Kembali ke halaman utama
+    return HttpResponseRedirect(reverse('main:show_main'))
 #*=======================================================Reqister Account==============================================================================#
 def register(request): #berfungsi untuk menghasilkan formulir registrasi secara otomatis dan menghasilkan akun pengguna ketika data di-submit dari form.
     form = UserCreationForm() #menggunakan hasil import sebagai basis dari form

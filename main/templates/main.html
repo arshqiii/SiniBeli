@@ -37,6 +37,11 @@
                         Edit
                     </button>
                 </a>
+                <a href="{% url 'main:delete_mood' mood_entry.pk %}">
+                    <button>
+                        Delete
+                    </button>
+                </a>
             </div>
         </a>
         {% endfor %}
