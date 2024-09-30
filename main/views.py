@@ -14,6 +14,7 @@ from django.urls import reverse
 #authenticate dan login yang di-import di atas adalah fungsi bawaan Django yang dapat digunakan untuk melakukan autentikasi dan login
 
 # Create your views here.
+#*======================================================================Show Main======================================================================#
 @login_required(login_url='/login') #ditambahkan supaya halaman main hanya dapat diakses oleh pengguna yang sudah login
 def show_main(request): #fungsi yang merender isi dari halaman utama aplikasi
     products = Product.objects.filter(user=request.user) #menfilter product berdasarkan user yang sedang login
@@ -29,7 +30,7 @@ def show_main(request): #fungsi yang merender isi dari halaman utama aplikasi
     }
     
     return render(request, "main.html", context)
-
+#*===========================================================Create Product============================================================================#
 def create_product(request):
     form = ProductEntryForm()
         
@@ -42,7 +43,19 @@ def create_product(request):
 
     context = {'form': form}
     return render(request, "create_product.html", context)
+#*============================================================Edit Product=============================================================================#
+def edit_product(request, id):
+    product = Product.objects.get(pk=id)
 
+    form = ProductEntryForm(request.POST or None, instance=product)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+    
+    context = {'form': form}
+    return render(request, "edit_product.html", context)
+#*=======================================================Reqister Account==============================================================================#
 def register(request): #berfungsi untuk menghasilkan formulir registrasi secara otomatis dan menghasilkan akun pengguna ketika data di-submit dari form.
     form = UserCreationForm() #menggunakan hasil import sebagai basis dari form
 
@@ -55,7 +68,7 @@ def register(request): #berfungsi untuk menghasilkan formulir registrasi secara 
             return redirect('main:login') #redirect setelah data form berhasil disimpan/masuk ke halaman login setelah register akun
     context = {'form':form}
     return render(request, 'register.html', context) #form akan dirender dalam file register.html yang berisi context
-
+#*=======================================================Login User=================================================================================#
 def login_user(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
@@ -71,13 +84,13 @@ def login_user(request):
         form = AuthenticationForm(request)
     context = {'form': form}
     return render(request, 'login.html', context)
-
+#*=====================================================Logout User=================================================================================#
 def logout_user(request):
     logout(request) #digunakan untuk menghapus sesi pengguna yang saat ini masuk.
     response = HttpResponseRedirect(reverse('main:login')) #membuat response yang mengarahkan pengguna ke halaman login dalam aplikasi Django.
     response.delete_cookie('last_login') #menghapus cookie last_login saat pengguna melakukan logout
     return response 
-
+#*======================================================Show Data==================================================================================#
 def show_xml(request):
     data = Product.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
@@ -94,3 +107,4 @@ def show_xml_by_id(request, id):
 def show_json_by_id(request, id):
     data = Product.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+#*=======================================================================================================================================================#
