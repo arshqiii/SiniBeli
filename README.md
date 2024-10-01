@@ -10,12 +10,35 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 ## 📃 Tugas 5
 
 ### 1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+Urutan prioritas pengambilan CSS selector jika terdapat banyak jenis untuk suatu elemen HTML adalah :
+
+1. Inline styles - misal: `<h1 style="color: pink;">`
+2. IDs - misal: `#navbar`, `#card`
+3. Classes, pseudo-classes, attribute selectors - misal: `.test`, `:hover`, `[href]`
+4. Elements and pseudo-elements - misal: `h1`, `::before`
 
 ### 2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+Design yang responsive menjadi konsep yang penting dalam pengembangan web karena dapat memberikan banyak keuntungan bagi pengguna aplikasi. Ini menghasilkan design situs web yang dapat beradaptasi dan merespon perubahan lebar layar sesuai dengan perangkat atau browser yang digunakan. Dengan responsive design, aplikasi web yang dibuat akan memiliki tampilan yang baik dan dapat berlaku tidak hanya untuk desktop, namun juga perangkat mobile seperti smartphone atau pun tablet sehingga mudah diakses banyak orang. Banyak aplikasi web sekarang dimana-mana sudah menerapkan design yang responsive seperti Youtube dan berbagai media sosial, untuk web aplikasi yang menurut saya belum menerapkan ada beberapa yang pernah saya pakai seperti SIAK-NG dan website mata kuliah OS.
 
 ### 3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+Margin, border, dan padding sama-sama digunakan dalam mendesign aplikasi web dengan CSS supaya dapat terlihat lebih bagus dan ketiga hal tersebut memiliki perbedaannya masing-masing.
+
+- Margin di CSS merupakan ruang di sekitar elemen HTML dan merupakan elemen eksternal. Properti margin digunakan untuk mengatur jarak antara elemen tersebut dan elemen di sekitarnya. Dengan kata lain, margin adalah spasi yang ada di sekitar batas luar suatu elemen.
+- Padding di CSS adalah ruang di dalam elemen-elemen HTML dan kontennya. Padding menentukan spacing didalam sebuah elemen HTML. Ketika menetapkan padding pada suatu elemen, sebenarnya menambahkan ruang kosong di sekitar kontennya, di antara konten dan batas elemen tersebut.
+- Border di CSS merupakan garis yang mengelilingi elemen. Border berada di antara padding dan margin dan bisa diatur ketebalan, style, dan warnanya.
+
+Contoh implementasi :
+```html
+<div style="margin: 20px; padding: 15px; border: 2px solid black; background-color: lightblue;">
+  Ini adalah elemen dengan margin 20px, padding 15px, dan border 2px solid.
+</div>
+```
+Untuk lebih baik membayangkan antara 3 hal tersebut bisa mengenal sesuatu yang namanya box model CSS 
+	![image](https://github.com/user-attachments/assets/878c5b68-cf75-4b5b-a41a-a4b94356e8e1)
 
 ### 4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+Flexbox dan grid layout merupakan 2 metode dalam css yang dapat digunakan untuk membuat aplikasi web menjadi responsif.
+
 
 ### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 
