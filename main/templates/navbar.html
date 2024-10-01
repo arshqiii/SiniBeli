@@ -45,7 +45,7 @@
   <div class="mobile-menu hidden md:hidden  px-4 w-full md:max-w-full">
     <div class="pt-2 pb-3 space-y-1 mx-auto">
       {% if user.is_authenticated %}
-      <a href="#" class="block text-gray-300 mr-4 hover:text-white transition duration-300 px-3 py-2">
+      <a href="{% url 'main:show_main' %}" class="block text-gray-300 mr-4 hover:text-white transition duration-300 px-3 py-2">
         <span>Home</span>
       </a>
       <a href="#" class="block text-gray-300 mr-4 hover:text-white transition duration-300 px-3 py-2">
