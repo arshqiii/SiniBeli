@@ -113,7 +113,7 @@ Properti Penting:
     ![image](https://github.com/user-attachments/assets/dce4974f-724d-4380-842b-d6e197b22d0a)
 
   - Halaman Register
-    ![image](https://github.com/user-attachments/assets/17c1fe04-5f6d-421e-a3bb-93c16ca04eba)
+    ![image](https://github.com/user-attachments/assets/e60d4a90-9032-454b-b988-2410104a8a9f)
 
   - Halaman daftar product (no product)
     ![image](https://github.com/user-attachments/assets/8fadaf72-510a-47c1-9f6b-f765f86b1ec7)
@@ -128,7 +128,7 @@ Properti Penting:
   - Navigation bar (web)
     ![image](https://github.com/user-attachments/assets/02be6bd7-43ce-446f-af29-8a8f28ef3341)
 
-  - Navigation bar (mobile)
+  - Navigation bar (mobile minimized & expanded)
 
     ![image](https://github.com/user-attachments/assets/18bb3e2b-1984-45ff-926d-4c94c7969ea3)
     ![image](https://github.com/user-attachments/assets/81870b02-6965-4591-b423-ee10cd0465ce)
