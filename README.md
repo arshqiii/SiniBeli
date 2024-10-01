@@ -10,14 +10,129 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 ## 📃 Tugas 5
 
 ### 1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+Urutan prioritas pengambilan CSS selector jika terdapat banyak jenis untuk suatu elemen HTML adalah :
+
+1. Inline styles - misal: `<h1 style="color: pink;">`
+2. IDs - misal: `#navbar`, `#card`
+3. Classes, pseudo-classes, attribute selectors - misal: `.test`, `:hover`, `[href]`
+4. Elements and pseudo-elements - misal: `h1`, `::before`
 
 ### 2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+Design yang responsive menjadi konsep yang penting dalam pengembangan web karena dapat memberikan banyak keuntungan bagi pengguna aplikasi. Ini menghasilkan design situs web yang dapat beradaptasi dan merespon perubahan lebar layar sesuai dengan perangkat atau browser yang digunakan. Dengan responsive design, aplikasi web yang dibuat akan memiliki tampilan yang baik dan dapat berlaku tidak hanya untuk desktop, namun juga perangkat mobile seperti smartphone atau pun tablet sehingga mudah diakses banyak orang. Banyak aplikasi web sekarang dimana-mana sudah menerapkan design yang responsive seperti Youtube dan berbagai media sosial, untuk web aplikasi yang menurut saya belum menerapkan ada beberapa yang pernah saya pakai seperti SIAK-NG dan website mata kuliah OS.
 
 ### 3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+Margin, border, dan padding sama-sama digunakan dalam mendesign aplikasi web dengan CSS supaya dapat terlihat lebih bagus dan ketiga hal tersebut memiliki perbedaannya masing-masing.
+
+- Margin di CSS merupakan ruang di sekitar elemen HTML dan merupakan elemen eksternal. Properti margin digunakan untuk mengatur jarak antara elemen tersebut dan elemen di sekitarnya. Dengan kata lain, margin adalah spasi yang ada di sekitar batas luar suatu elemen.
+- Padding di CSS adalah ruang di dalam elemen-elemen HTML dan kontennya. Padding menentukan spacing didalam sebuah elemen HTML. Ketika menetapkan padding pada suatu elemen, sebenarnya menambahkan ruang kosong di sekitar kontennya, di antara konten dan batas elemen tersebut.
+- Border di CSS merupakan garis yang mengelilingi elemen. Border berada di antara padding dan margin dan bisa diatur ketebalan, style, dan warnanya.
+
+Contoh implementasi :
+```html
+<div style="margin: 20px; padding: 15px; border: 2px solid black; background-color: lightblue;">
+  Ini adalah elemen dengan margin 20px, padding 15px, dan border 2px solid.
+</div>
+```
+Untuk lebih baik membayangkan antara 3 hal tersebut bisa mengenal sesuatu yang namanya box model CSS 
+	![image](https://github.com/user-attachments/assets/878c5b68-cf75-4b5b-a41a-a4b94356e8e1)
 
 ### 4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+Flexbox dan grid layout merupakan 2 metode dalam css yang dapat digunakan untuk membuat aplikasi web menjadi responsif. Flexbox merupakan sistem dalam desain web yang mempermudah developer mengatur dan menyusun elemen-elemen di dalam kotak atau wadah container dengan cara yang fleksibel. Dengan flexbox developer bisa menentukan arah susunan elemen seperti teks, gambar, atau kotak, mengatur jarak antara elemen, atau bahkan memastikan elemen tertentu selalu berada di tengah-tengah wadahnya. Bedanya flexbox dengan grid adalah metode tata letak yang satu dimensi dimana grid menggunakan dua dimensi. Menggunakan grid memungkinkan developer untuk membuat grid kompleks dengan kolom dan baris, memberikan kontrol lebih besar atas penempatan elemen dalam dua arah: horizontal (baris) dan vertikal (kolom).
+
+Kegunaan flexbox: 
+- Membuat tata letak horizontal atau vertikal dengan lebih mudah.
+- Mengatur distribusi elemen dalam container, termasuk pengelolaan jarak antar elemen (spacing), pembungkusan (wrapping), dan keselarasan (alignment).
+- Mengelola posisi elemen anak secara proporsional, baik dalam ukuran maupun distribusi ruang di dalam container.
+
+Properti penting flexbox:
+- `display: flex;`: Mengubah elemen container menjadi flex container.
+- `flex-direction`: Menentukan arah elemen (row, column).
+- `justify-content`: Mengatur keselarasan elemen secara horizontal.
+- `align-items`: Mengatur keselarasan elemen secara vertikal.
+- `flex-wrap`: Mengatur apakah elemen akan melipat ke baris atau kolom baru jika ruang tidak cukup.
+
+Kegunaan grid:
+- Membuat tata letak kompleks dengan beberapa kolom dan baris.
+- Menyusun elemen dalam grid yang presisi, dengan kemampuan untuk mengontrol lebar, tinggi, dan distribusi ruang antar elemen di dalam grid.
+- Mengelola keselarasan elemen dalam dua dimensi secara bersamaan (baik horizontal maupun vertikal).
+
+Properti Penting:
+- `display: grid`;: Mengubah elemen container menjadi grid container.
+- `grid-template-columns` dan `grid-template-rows`: Menentukan jumlah dan ukuran kolom dan baris.
+- `grid-gap` atau `gap`: Menentukan jarak antar elemen grid.
+- `grid-area`: Menempatkan elemen di area grid yang spesifik.
 
 ### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+- Untuk mengimplementasikan fungsi untuk menghapus dan mengedit product saya menambahkan dua fungsi dalam file `views.py` seperti berikut
+
+  Fungsi `edit_product()` yang mengambil parameter request dan id untuk mengedit data product yang telah dibuat
+  ```python
+  def edit_product(request, id):
+    product = Product.objects.get(pk=id) #mengambil product berdasarkan id
+
+    form = ProductEntryForm(request.POST or None, instance=product) #mengambil form
+
+    if form.is_valid() and request.method == "POST": #cek jika form valid dan metode request == post
+        form.save() #save form
+        return HttpResponseRedirect(reverse('main:show_main')) #mengembalikan product yang telah diedit datanya
+    
+    context = {'form': form} 
+    return render(request, "edit_product.html", context) #merender halaman di file edit_product.html
+  ```
+  Fungsi `delete_product()` yang mengambil parameter request dan id untuk delete product berdasarkan id
+  ```python
+  def delete_product(request, id):
+    product = Product.objects.get(pk=id) #mengambil product berdasarkan id
+    product.delete() #hapus product
+    return HttpResponseRedirect(reverse('main:show_main')) #Kembali ke halaman utama
+  ```
+
+  Setelah itu dilakukan routing fungsi-fungsi tersebut dalam file `urls.py` yang ada di direktori `main`
+  ```python
+  urlpatterns = [
+    ...
+    path('edit_product/<uuid:id>', edit_product, name='edit_product'),
+    path('delete/<uuid:id>', delete_product, name='delete_product'),
+    ...
+  ]
+  ```
+- Untuk kustomisasi desain pada template HTML yang telah dibuat saya menggunakan framework CSS Tailwind, sebelum melakukan design yang dilakukan adalah menambahkan script pada `base.html`
+  ```html
+  <head>
+    {% block meta %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SiniBeli</title>
+    {% endblock meta %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+  </head>
+  ```
+  Setelah itu saya memulai mendesign aplikasi web dengan mengikuti instruksi yang ada pada tutorial PBP dan melihat dokumentasi framwork tailwind untuk membuat halaman web semenarik mungkin dan responsive untuk digunakan, berikut hasilnya:
+  - Halaman Login
+    ![image](https://github.com/user-attachments/assets/dce4974f-724d-4380-842b-d6e197b22d0a)
+
+  - Halaman Register
+    ![image](https://github.com/user-attachments/assets/17c1fe04-5f6d-421e-a3bb-93c16ca04eba)
+
+  - Halaman daftar product (no product)
+    ![image](https://github.com/user-attachments/assets/8fadaf72-510a-47c1-9f6b-f765f86b1ec7)
+    
+  - Halaman daftar product (with product)
+    ![image](https://github.com/user-attachments/assets/6f0a6a95-28f6-4906-8edb-4f614b8fae9b)
+
+  - Contoh Card product
+
+    ![image](https://github.com/user-attachments/assets/fae5c93b-bdd2-4d3e-b359-648bc63db285)
+
+  - Navigation bar (web)
+    ![image](https://github.com/user-attachments/assets/02be6bd7-43ce-446f-af29-8a8f28ef3341)
+
+  - Navigation bar (mobile)
+
+    ![image](https://github.com/user-attachments/assets/18bb3e2b-1984-45ff-926d-4c94c7969ea3)
+    ![image](https://github.com/user-attachments/assets/81870b02-6965-4591-b423-ee10cd0465ce)
+
 
 ## ✅ Checklist Tugas 4
 - [x] Implementasikan fungsi untuk menghapus dan mengedit product.
@@ -28,7 +143,7 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 	  	- Jika sudah ada product yang tersimpan, halaman daftar product akan menampilkan detail setiap product dengan menggunakan card (tidak boleh sama persis dengan desain pada Tutorial!).
 	  	- Untuk setiap card product, buatlah dua buah button untuk mengedit dan menghapus product pada card tersebut!
 	  	- Buatlah navigation bar (navbar) untuk fitur-fitur pada aplikasi yang responsive terhadap perbedaan ukuran device, khususnya mobile dan desktop.
-- [ ] Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).
+- [x] Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).
 	- Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
   	- Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
   	- Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
