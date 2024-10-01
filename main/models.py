@@ -12,15 +12,5 @@ class Product(models.Model):
     description = models.TextField()
     image = models.ImageField(default='')
 
-    
-    @property
-    def get_name(self):
+    def __str__(self):
         return self.name
-    
-    @property
-    def get_price(self):
-        return f"Rp{self.price:,.0f}"
-    
-    @property
-    def get_desc(self):
-        return self.description

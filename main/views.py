@@ -32,10 +32,9 @@ def show_main(request): #fungsi yang merender isi dari halaman utama aplikasi
     return render(request, "main.html", context)
 #*===========================================================Create Product============================================================================#
 def create_product(request):
-    form = ProductEntryForm()
+    form = ProductEntryForm(request.POST or None, request.FILES)
         
     if form.is_valid() and request.method == "POST":
-        form = ProductEntryForm(request.POST, request.FILES) 
         product = form.save(commit=False) #untuk mencegah Django agar tidak langsung menyimpan objek yang telah dibuat dari form langsung ke database. 
         product.user = request.user
         product.save()

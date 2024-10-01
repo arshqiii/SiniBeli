@@ -1,143 +1,42 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>SiniBeli</title>
+{% endblock meta %}
 {% block content %}
 {% include 'navbar.html' %}
-<div class="intro">
-    <div class="app-info">
-        <h1>{{app_intro}}</h1>
+<div class="overflow-x-hidden min-h-screen bg-gray-800 flex flex-col">
+    <div class="text-center bg-gradient-to-r from-yellow-100 via-emerald-300 to-blue-100 pt-16 shadow-lg">
+        <h1 class="text-6xl font-bold text-black pb-16">{{app_intro}}!</h1>
+    </div>
+    <div class="px-3 md:px-8 pb-8 pt-16">
+        <div class="flex justify-end mb-6">
+            <a href="{% url 'main:create_product' %}"
+                class="bg-lime-600 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+                Add New Product
+            </a>
+        </div>
+
+        {% if not products %}
+        <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+            <img src="{% static 'images/Sad-Emoji-21.png' %}" alt="Sad face" class="w-32 h-32 mb-4" />
+            <p class="text-center text-gray-300 mt-4">Belum ada data product disini.</p>
+        </div>
+        {% else %}
+        <div class="flex flex-col md:flex-row flex-wrap items-center justify-center gap-6 w-full">
+            {% for product in products %}
+                {% include 'card_product.html' with product=product %}
+            {% endfor %}
+        </div>
+        
+        {% endif %}
+        <div class="px-4 mb-2">
+            <div class="flex rounded-md items-center bg-lime-600 my-4 py-2 px-5 w-fit mx-auto">
+                <h1 class="text-white text-center">Last Login: {{last_login}}</h1>
+            </div>
+        </div>
+        <p class="text-center text-gray-300 mt-4">Muhammad Radhiya Arshq {{npm}} {{kelas}} </p>
     </div>
 </div>
-<div class="product-container">
-    <h2>Product</h2>
-    {% if not products %}
-    <h3>No Product Available</h3>
-    {% else %}
-    <div class="container-box">
-        {% for product in products %}
-        <a href="json/{{product.id}}" style="text-decoration: none;">
-            <div class="box">
-                <img src="{{product.image.url}}" alt="Image of {{product.name}}">
-                <p style="text-align: center;"> {{product.name}} </p>
-                <p> Price : Rp{{product.price}}.00 </p>
-                <p> Description : {{product.description}}</p>
-                <a href="{% url 'main:edit_mood' mood_entry.pk %}">
-                    <button>
-                        Edit
-                    </button>
-                </a>
-                <a href="{% url 'main:delete_mood' mood_entry.pk %}">
-                    <button>
-                        Delete
-                    </button>
-                </a>
-            </div>
-        </a>
-        {% endfor %}
-    </div>
-    {% endif %}
-    <div>
-        <a href="{% url 'main:create_product' %}">
-            <div class="add-product">
-                <button>Add New Product</button>
-            </div>
-        </a>
-    </div>
-    <div>
-        <a href="{% url 'main:logout' %}"> <!-- mengarah ke URL secara dinamis berdasarkan app_name dan name -->
-            <div class="logout">
-                <button>Logout</button>
-            </div>
-        </a>
-    </div>
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
-</div>
-<style>
-    body {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        background-color: honeydew;
-    }
-
-    .intro{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-self: center;
-        flex-wrap: wrap;
-        padding: 32px 0;
-        background-color: honeydew;
-        width: 100%;
-    }
-
-    .intro h1{
-        text-align: center;
-        font-size: 50px;
-    }
-
-    .app-info{
-        padding: 5px;
-        width: 600px;
-    }
-
-    .product-container{
-        display: flex;
-        flex-direction: column;
-        align-self: center;
-        width: 100%;
-        min-height: 50vh;
-        text-align: center;
-        background-color: rgb(133, 146, 109);
-        border: 2px solid black
-    }
-
-    .container-box{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-self: center;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-
-    .box{
-        display: flex;
-        flex-direction: column;
-        width: 200px;
-        text-align: left;
-        justify-content: center;
-        align-items: center;
-        margin: 10px;
-        padding: 8px;
-        border: 2px solid black;
-        border-radius: 20px;
-        background-color: aliceblue;
-    }
-
-    .box img{
-        height: 180px;
-        width: 196px;
-        border-radius: 20px;
-    }
-
-    .add-product button{
-        font-size: large;
-        border-radius: 10px;
-        padding: 10px ;
-        box-shadow: 0 5px #666;
-        transition-duration: 0.4s;
-        margin: 16px;
-    }
-
-    .add-product button:hover{
-        color: aliceblue;
-        background-color: rgb(145, 181, 83);
-    }
-
-    .add-product button:active{
-        box-shadow: 0 5px #666;
-        transform: translateY(5px);
-    }
-</style>
 {% endblock content %}

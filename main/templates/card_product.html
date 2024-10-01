@@ -1,0 +1,18 @@
+<div class="max-w-sm bg-white border border-lime-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <a href="#">
+        <img class="rounded-t-lg w-full h-48 object-cover object-top" src="{{product.image.url}}" alt="Image of {{product.name}}" />
+    </a>
+    <div class="p-5">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{product.name}}</h5>
+        <p class="mb-3 font-normal text-black-700 dark:text-gray-400">{{product.description}}.</p>
+        <p class="mb-3 font-normal text-black-700 dark:text-gray-400">Rp{{product.price}}.00</p>
+        <a href="{% url 'main:edit_product' product.pk %}"
+            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-lime-700 rounded-lg hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-lime-300 dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-800">
+            Edit
+        </a>
+        <a href="{% url 'main:delete_product' product.pk %}"
+            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+            Delete
+        </a>
+    </div>
+</div>
