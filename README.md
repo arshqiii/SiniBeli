@@ -7,6 +7,37 @@
 ## 🔗 Link Deployment 
 Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id/](http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id/)
 
+## 📃 Tugas 6
+
+### 1. Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+
+### 2. Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+
+### 3. Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+
+### 4. Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+## ✅ Checklist Tugas 6
+- [ ] Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
+    - AJAX GET
+        - [ ] Ubahlah kode cards data mood agar dapat mendukung AJAX GET.
+        - [ ] Lakukan pengambilan data mood menggunakan AJAX GET. Pastikan bahwa data yang diambil hanyalah data milik pengguna yang logged-in.
+    - AJAX POST
+        - [ ] Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan mood.
+        - [ ] Buatlah fungsi view baru untuk menambahkan mood baru ke dalam basis data.
+        - [ ] Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
+        - [ ] Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
+        - [ ] Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar mood terbaru tanpa reload halaman utama secara keseluruhan.
+- [ ] Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).
+	- Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+	- Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+	- Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+	- Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+	- Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+- [ ] Melakukan add-commit-push ke GitHub.
+
 ## 📃 Tugas 5
 
 ### 1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
@@ -134,7 +165,7 @@ Properti Penting:
     ![image](https://github.com/user-attachments/assets/81870b02-6965-4591-b423-ee10cd0465ce)
 
 
-## ✅ Checklist Tugas 4
+## ✅ Checklist Tugas 5
 - [x] Implementasikan fungsi untuk menghapus dan mengedit product.
 - [x] Kustomisasi desain pada template HTML yang telah dibuat pada tugas-tugas sebelumnya menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut:
 	- [x] Kustomisasi halaman login, register, dan tambah product semenarik mungkin.
