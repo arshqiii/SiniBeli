@@ -10,6 +10,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required #mengimpor sebuah decorator yang bisa mengharuskan pengguna masuk (login) terlebih dahulu sebelum dapat mengakses suatu halaman web.
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 #authenticate dan login yang di-import di atas adalah fungsi bawaan Django yang dapat digunakan untuk melakukan autentikasi dan login
 
@@ -64,6 +66,26 @@ def delete_product(request, id):
 
     #Kembali ke halaman utama
     return HttpResponseRedirect(reverse('main:show_main'))
+#*=======================================================Create Product with AJAX========================================================================#
+@csrf_exempt #dengan menggunakan ini Django tidak perlu mengecek keberadaan csrf_token pada POST request yang dikirimkan ke fungsi ini.
+@require_POST #membuat fungsi hanya bisa diakses ketika pengguna mengirimkan POST request ke fungsi tersebut
+def add_product_ajax(request):
+    #mengambil data yang dikirimkan pengguna melalui POST request secara manual
+    name = request.POST.get("name")
+    price = request.POST.get("price")
+    description = request.POST.get("description")
+    image = request.POST.get("image")
+    user = request.user
+
+    #membuat objek product baru
+    new_product = Product(
+        name=name, price=price,
+        description=description, image=image,
+        user=user
+    )
+    new_product.save() #save product yang dibuat
+
+    return HttpResponse(b"CREATED", status=201)
 #*=======================================================Reqister Account==============================================================================#
 def register(request): #berfungsi untuk menghasilkan formulir registrasi secara otomatis dan menghasilkan akun pengguna ketika data di-submit dari form.
     form = UserCreationForm() #menggunakan hasil import sebagai basis dari form
