@@ -19,7 +19,9 @@ from django.views.decorators.http import require_POST
 #*======================================================================Show Main======================================================================#
 @login_required(login_url='/login') #ditambahkan supaya halaman main hanya dapat diakses oleh pengguna yang sudah login
 def show_main(request): #fungsi yang merender isi dari halaman utama aplikasi
-    products = Product.objects.filter(user=request.user) #menfilter product berdasarkan user yang sedang login
+
+    #objek produk sekarang didapat dari endpoint /json, sehingga kode di bawah tidak diperlukan lagi.
+    # products = Product.objects.filter(user=request.user) #menfilter product berdasarkan user yang sedang login
 
     context = {
         'nama' : request.user.username, #menampilkan username pengguna yang login pada halaman main.
@@ -27,7 +29,6 @@ def show_main(request): #fungsi yang merender isi dari halaman utama aplikasi
         'kelas' : 'PBP D',
 
         'app_intro' : 'Welcome to SiniBeli',
-        'products' : products,
         'last_login': request.COOKIES['last_login'], #menambahkan informasi cookie last_login pada response yang akan ditampilkan di halaman web.
     }
     
@@ -125,11 +126,11 @@ def logout_user(request):
     return response 
 #*======================================================Show Data==================================================================================#
 def show_xml(request):
-    data = Product.objects.all()
+    data = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
 def show_json(request):
-    data = Product.objects.all()
+    data = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 
