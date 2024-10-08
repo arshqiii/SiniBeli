@@ -10,14 +10,134 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 ## 📃 Tugas 6
 
 ### 1. Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+JavaScript merupakan salah satu teknologi utama yang dipakai pada pengembangan web bersama dengan HTML dan CSS. Dengan menggunakan Javascript, developer dapat memanipulasi halaman web secara dinamis dan interaksi antara halaman web dengan pengguna meningkat. 
 
 ### 2. Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+Fungsi dari penggunaan await saat menggunakan `fetch()` adalah untuk menunggu operasi asinkron selesai sebelum melanjutkan eksekusi kode. `fetch()` adalah fungsi yang berjalan secara asinkron, artinya ketika kita memanggilnya, proses tersebut berjalan di latar belakang tanpa menghentikan eksekusi kode setelahnya. Dengan menggunakan `await`, dipastikan bahwa kode berikutnya dieksekusi hanya setelah permintaan `fetch()` selesai dan mengembalikan hasil. Jika tidak menggunakan `await` maka eksekusi tidak dijeda dan kode akan dieksekusi secara sinkron seperti biasa tanpa menunggu.
 
-### 3. Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+### 3. Mengapa kita perlu menggunakan decorator `csrf_exempt` pada view yang akan digunakan untuk AJAX POST?
+Kita perlu menggunakan decorator `csrf_exempt` pada view supaya Django tidak perlu mengecek keberadaan csrf_token pada POST request yang dikirimkan ke fungsi yang kita buat dengan AJAX.
 
 ### 4. Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+Pembersihan data input user dilakukan di backend juga selain di frontend saja karena beberapa alasan seperti :
+- Frontend bisa dimanipulasi, sehingga backend harus memastikan data aman dari serangan seperti SQL Injection atau XSS
+- Frontend hanya lapisan pertama; backend memastikan data benar dan bersih
+- Data bisa masuk dari API atau aplikasi lain, jadi backend harus menjaga integritas
+- Pengguna bisa melewati frontend menggunakan alat seperti Postman, sehingga backend harus memvalidasi data.
+- Backend memastikan pembersihan berjalan di semua perangkat dan lingkungan
 
 ### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+- Untuk mengimplementasikan AJAX pada aplikasi web yang telah dibuat, yang pertama saya lakukan adalah menambahkan fungsi baru di `views.py` untuk menambahkan product dengan cara AJAX yang kemudian fungsi ini dilakukan routing pada `urls.py` seperti semua fungsi di views
+
+	```python
+	@csrf_exempt #dengan menggunakan ini Django tidak perlu mengecek keberadaan csrf_token pada POST request yang dikirimkan ke fungsi ini.
+	@require_POST #membuat fungsi hanya bisa diakses ketika pengguna mengirimkan POST request ke fungsi tersebut
+	def add_product_ajax(request):
+	#mengambil data yang dikirimkan pengguna melalui POST request secara manual
+	name = strip_tags(request.POST.get("name")) # strip HTML tags!
+	price = request.POST.get("price")
+	description = request.POST.get("description")
+	image = request.FILES.get("image")
+	user = request.user
+
+	#membuat objek product baru
+	new_product = Product(
+		name=name, 
+		price=price,
+		description=description, 
+		image=image,
+		user=user
+	)
+	new_product.save() #save product yang dibuat
+
+	return HttpResponse(b"CREATED", status=201)
+	```
+ - Selanjutnya saya mengubah cara menampilkan data product dengan menggunakan `fetch()` API. Ini dicapai dengan pertama menghapus baris
+	```python
+	products = Product.objects.filter(user=request.user)
+
+	product : products
+	```
+- Kemudian menghapus bagian di main.html yang mengandung conditional products dan diubah menjadi satu div saja dengan class `product_cards`
+- Untuk menampilkan produk yang dibuat, saya membuat block script dibagian bawah file main.html dan diisi dengan seperti berikut 
+	```javascript
+	async function getProduct() {
+		return fetch("{% url 'main:show_json' %}").then((res) => res.json());
+		//menggunakan fetch() API ke data JSON secara asynchronous.
+		//Setelah data di-fetch, fungsi then() digunakan untuk melakukan parse pada data JSON menjadi objek JavaScript.
+	}
+	```
+- Lalu saya membuat function lagi bernama `refreshProducts()` yang digunakan untuk me-refresh data product secara asinkronus
+- Kemudian saya membuat modal sebagai form untuk menambahkan product melalui AJAX, ini dilakukan dengan menambahkan kode HTML pada `main.html` yang diberikan styling tailwind
+- Supaya modal dapat berfungsi ditambahkan beberapa hal dalam blok script `main.html`
+	```javascript
+	const modal = document.getElementById('crudModal');
+	const modalContent = document.getElementById('crudModalContent');
+
+	function showModal() {
+		const modal = document.getElementById('crudModal');
+		const modalContent = document.getElementById('crudModalContent');
+
+		modal.classList.remove('hidden'); 
+		setTimeout(() => {
+			modalContent.classList.remove('opacity-0', 'scale-95');
+			modalContent.classList.add('opacity-100', 'scale-100');
+		}, 50); 
+	}
+
+	function hideModal() {
+		const modal = document.getElementById('crudModal');
+		const modalContent = document.getElementById('crudModalContent');
+
+		modalContent.classList.remove('opacity-100', 'scale-100');
+		modalContent.classList.add('opacity-0', 'scale-95');
+
+		setTimeout(() => {
+			modal.classList.add('hidden');
+		}, 150); 
+	}
+	```
+- Lalu menambahkan button baru sebelah button add product untuk melakukan penambahan data menggunakan AJAX
+	```html
+		<a href="{% url 'main:create_product' %}" class="bg-lime-600 hover:bg-lime-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+				Add New Product
+		</a>
+		<button data-modal-target="crudModal" data-modal-toggle="crudModal" class="bg-lime-600 hover:bg-lime-700 text-white font-bold mx-2 py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105" onclick="showModal();">
+		Add New Product by AJAX
+		</button>
+	```
+- Untuk memanfaatkan fungsi yang menambahkan product menggunakan AJAX dibuat fungsi dalam block script `main.html` sebagai berikut
+	```javascript
+	function addProduct() {
+		fetch("{% url 'main:add_product_ajax' %}", {
+		method: "POST",
+		body: new FormData(document.querySelector('#productForm')), //membuat sebuah FormData baru yang datanya diambil dari form pada modal
+		}) //FormData dapat digunakan untuk mengirimkan data form tersebut ke server.
+		.then(response => {
+		if (response.ok) {
+			refreshProducts(); // Refresh products list
+			hideModal(); // Close the modal after product creation
+		} else {
+			console.error("Product creation failed.");
+		}
+		})
+		.catch(error => {
+		console.error("Error:", error);
+		});
+
+		document.getElementById("productForm").reset(); //mengosongkan isi field form modal setelah di-submit.
+		document.querySelector("[data-modal-toggle='crudModal']").click();
+
+		return false;
+	}
+	```
+- Lalu dibuat event listener pada form yang ada di modal untuk menjalankan fungsi diatas
+	```javascript
+	document.getElementById("productForm").addEventListener("submit", (e) => {
+		e.preventDefault();
+		addProduct(); //Memanggil fungsi untuk menambahkan product
+	})
+	```
 
 ## ✅ Checklist Tugas 6
 - [x] Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
