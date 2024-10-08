@@ -49,7 +49,7 @@ def create_product(request):
 def edit_product(request, id):
     product = Product.objects.get(pk=id)
 
-    form = ProductEntryForm(request.POST or None, instance=product)
+    form = ProductEntryForm(request.POST or None, request.FILES or None, instance=product)
 
     if form.is_valid() and request.method == "POST":
         form.save()
@@ -75,13 +75,15 @@ def add_product_ajax(request):
     name = request.POST.get("name")
     price = request.POST.get("price")
     description = request.POST.get("description")
-    image = request.POST.get("image")
+    image = request.FILES.get("image")
     user = request.user
 
     #membuat objek product baru
     new_product = Product(
-        name=name, price=price,
-        description=description, image=image,
+        name=name, 
+        price=price,
+        description=description, 
+        image=image,
         user=user
     )
     new_product.save() #save product yang dibuat
