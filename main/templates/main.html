@@ -75,7 +75,7 @@
       </div>
     </div>    
 
-    <div class="px-4 mb-2">
+    <div class="px-7 mb-2 mt-10">
       <div class="flex rounded-md items-center bg-lime-600 my-4 py-2 px-5 w-fit mx-auto">
         <h1 class="text-white text-center">Last Login: {{last_login}}</h1>
       </div>
@@ -110,10 +110,10 @@
             `;
     } else {
       classNameString =
-        "columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 w-5/6";
+        "columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 w-5/6 mx-auto";
       products.forEach((item) => {
         htmlString += `
-                <div class="relative break-inside-avoid">
+                <div class="flex justify-center">
                   <div class="relative top-5 bg-lime-100 shadow-md rounded-lg mb-6 break-inside-avoid flex flex-col border-2 border-lime-300 transform hover:scale-105 transition-transform duration-300">
                       
                       <!-- Product Image -->
