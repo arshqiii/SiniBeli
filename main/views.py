@@ -12,6 +12,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.utils.html import strip_tags #Fungsi strip_tags akan menghilangkan semua tag HTML yang terdapat pada data yang dikirimkan pengguna melalui POST request, sehingga data yang disimpan dalam basis data adalah data yang sudah "bersih".
 
 #authenticate dan login yang di-import di atas adalah fungsi bawaan Django yang dapat digunakan untuk melakukan autentikasi dan login
 
@@ -72,7 +73,7 @@ def delete_product(request, id):
 @require_POST #membuat fungsi hanya bisa diakses ketika pengguna mengirimkan POST request ke fungsi tersebut
 def add_product_ajax(request):
     #mengambil data yang dikirimkan pengguna melalui POST request secara manual
-    name = request.POST.get("name")
+    name = strip_tags(request.POST.get("name")) # strip HTML tags!
     price = request.POST.get("price")
     description = request.POST.get("description")
     image = request.FILES.get("image")
