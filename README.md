@@ -20,23 +20,23 @@ Akses SiniBeli di link berikut : [http://muhammad-radhiya-sinibeli.pbp.cs.ui.ac.
 ### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 
 ## ✅ Checklist Tugas 6
-- [ ] Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
+- [x] Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
     - AJAX GET
-        - [ ] Ubahlah kode cards data mood agar dapat mendukung AJAX GET.
-        - [ ] Lakukan pengambilan data mood menggunakan AJAX GET. Pastikan bahwa data yang diambil hanyalah data milik pengguna yang logged-in.
+        - [x] Ubahlah kode cards data mood agar dapat mendukung AJAX GET.
+        - [x] Lakukan pengambilan data mood menggunakan AJAX GET. Pastikan bahwa data yang diambil hanyalah data milik pengguna yang logged-in.
     - AJAX POST
-        - [ ] Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan mood.
-        - [ ] Buatlah fungsi view baru untuk menambahkan mood baru ke dalam basis data.
-        - [ ] Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
-        - [ ] Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
-        - [ ] Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar mood terbaru tanpa reload halaman utama secara keseluruhan.
+        - [x] Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan mood.
+        - [x] Buatlah fungsi view baru untuk menambahkan mood baru ke dalam basis data.
+        - [x] Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
+        - [x] Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
+        - [x] Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar mood terbaru tanpa reload halaman utama secara keseluruhan.
 - [ ] Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).
 	- Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
 	- Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
 	- Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
 	- Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
 	- Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
-- [ ] Melakukan add-commit-push ke GitHub.
+- [x] Melakukan add-commit-push ke GitHub.
 
 ## 📃 Tugas 5
 
