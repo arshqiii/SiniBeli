@@ -16,7 +16,7 @@ JavaScript merupakan salah satu teknologi utama yang dipakai pada pengembangan w
 Fungsi dari penggunaan await saat menggunakan `fetch()` adalah untuk menunggu operasi asinkron selesai sebelum melanjutkan eksekusi kode. `fetch()` adalah fungsi yang berjalan secara asinkron, artinya ketika kita memanggilnya, proses tersebut berjalan di latar belakang tanpa menghentikan eksekusi kode setelahnya. Dengan menggunakan `await`, dipastikan bahwa kode berikutnya dieksekusi hanya setelah permintaan `fetch()` selesai dan mengembalikan hasil. Jika tidak menggunakan `await` maka eksekusi tidak dijeda dan kode akan dieksekusi secara sinkron seperti biasa tanpa menunggu.
 
 ### 3. Mengapa kita perlu menggunakan decorator `csrf_exempt` pada view yang akan digunakan untuk AJAX POST?
-Kita perlu menggunakan decorator `csrf_exempt` pada view supaya Django tidak perlu mengecek keberadaan csrf_token pada POST request yang dikirimkan ke fungsi yang kita buat dengan AJAX.
+Kita perlu menggunakan decorator `csrf_exempt` pada view supaya Django tidak perlu mengecek keberadaan `csrf_token` pada POST request yang dikirimkan ke fungsi yang kita buat dengan AJAX.
 
 ### 4. Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
 Pembersihan data input user dilakukan di backend juga selain di frontend saja karena beberapa alasan seperti :
@@ -58,8 +58,8 @@ Pembersihan data input user dilakukan di backend juga selain di frontend saja ka
 
 	product : products
 	```
-- Kemudian menghapus bagian di main.html yang mengandung conditional products dan diubah menjadi satu div saja dengan class `product_cards`
-- Untuk menampilkan produk yang dibuat, saya membuat block script dibagian bawah file main.html dan diisi dengan seperti berikut 
+- Kemudian menghapus bagian di `main.html` yang mengandung conditional products dan diubah menjadi satu div saja dengan class `product_cards`
+- Untuk menampilkan produk yang dibuat, saya membuat block script dibagian bawah file `main.html` dan diisi dengan seperti berikut 
 	```javascript
 	async function getProduct() {
 		return fetch("{% url 'main:show_json' %}").then((res) => res.json());
@@ -150,7 +150,7 @@ Pembersihan data input user dilakukan di backend juga selain di frontend saja ka
         - [x] Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.
         - [x] Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/.
         - [x] Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar mood terbaru tanpa reload halaman utama secara keseluruhan.
-- [ ] Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).
+- [x] Menjawab beberapa pertanyaan berikut pada README.md pada root folder (silakan modifikasi README.md yang telah kamu buat sebelumnya; tambahkan subjudul untuk setiap tugas).
 	- Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
 	- Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
 	- Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
