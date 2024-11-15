@@ -29,13 +29,15 @@ DEBUG = not PRODUCTION
 #*membuat variabel DEBUG di project kalian bernilai True ketika mengerjakan di lokal dan otomatis bernilai False ketika di push ke PWS.
 #*Variabel DEBUG yang bernilai False akan membantu PWS agar tidak rungkad lagi karena Django tidak perlu mengecek semua file yang sedang diproses.
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "muhammad-radhiya-sinibeli.pbp.cs.ui.ac.id", "10.0.2.2"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'main',
+    'authentication',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,7 +55,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
 
 ROOT_URLCONF = 'e_commerce_pbp.urls'
 
